@@ -5,8 +5,8 @@ import AddTask from "./AddTask";
 class Todos extends Component {
   state = {
     tasks: [
-      { id: 1, text: "Make bed" },
-      { id: 2, text: "Do assignment" },
+      { id: 1, text: "Make bed", complete: true },
+      { id: 2, text: "Do assignment", complete: false },
     ],
     count: 3,
   };
@@ -27,11 +27,27 @@ class Todos extends Component {
     });
   };
 
+  changeTaskStatus = (id) => {
+    let tasks = this.state.tasks.map((task) => {
+      if (task.id === id) {
+        task.complete = !task.complete;
+      }
+      return task;
+    });
+    this.setState({
+      tasks,
+    });
+  };
+
   render() {
     return (
       <>
         <AddTask addTask={this.addTask} />
-        <ToDoList tasks={this.state.tasks} deleteTask={this.deleteTask} />
+        <ToDoList
+          tasks={this.state.tasks}
+          deleteTask={this.deleteTask}
+          changeTaskStatus={this.changeTaskStatus}
+        />
       </>
     );
   }

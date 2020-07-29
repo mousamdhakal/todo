@@ -30,12 +30,19 @@ body {
   border-bottom: 1px solid #56494E;
 }
 
+.todos__text--complete {
+  text-decoration: line-through;
+}
+
 .todos__button {
   float: right;
   cursor: pointer;
   background: transparent;
   padding: 8px;
   border: none;
+}
+
+.todos__button--delete {
   color: #A62639;
 }
 
@@ -66,6 +73,6 @@ body {
   }
 
   .todos__button {
-    padding: 15px;
+    padding: 10px;
   }
 }

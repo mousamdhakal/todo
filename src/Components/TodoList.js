@@ -5,12 +5,30 @@ const ToDoList = (props) => {
     props.tasks.map((task) => {
       return (
         <div className="todos__list-item" key={task.id}>
-          <span className="todos__text">{task.text}</span>
+          <span
+            className={
+              task.complete
+                ? "todos__text todos__text--complete"
+                : "todos__text"
+            }
+          >
+            {task.text}
+          </span>
           <button
-            className="todos__button"
+            className="todos__button todos__button--delete"
             onClick={() => props.deleteTask(task.id)}
           >
             <i class="fas fa-trash-alt"></i>
+          </button>
+          <button
+            className="todos__button todos__button--checkbox"
+            onClick={() => props.changeTaskStatus(task.id)}
+          >
+            {task.complete ? (
+              <i class="far fa-check-square"></i>
+            ) : (
+              <i class="far fa-square"></i>
+            )}
           </button>
         </div>
       );
