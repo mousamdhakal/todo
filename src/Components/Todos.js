@@ -3,13 +3,18 @@ import ToDoList from "./TodoList";
 import AddTask from "./AddTask";
 
 class Todos extends Component {
-  state = {
-    tasks: [
-      { id: 1, text: "Make bed", complete: true },
-      { id: 2, text: "Do assignment", complete: false },
-    ],
-    count: 3,
-  };
+  constructor() {
+    super();
+
+    this.state = {
+      tasks: [
+        { id: 1, text: "Make bed", complete: true },
+        { id: 2, text: "Do assignment", complete: false },
+        { id: 3, text: "Play football", complete: false },
+      ],
+      count: 4,
+    };
+  }
 
   deleteTask = (id) => {
     let tasks = this.state.tasks.filter((task) => {
@@ -40,11 +45,23 @@ class Todos extends Component {
   };
 
   render() {
+    let tasksToShow = [];
+
+    if (this.props.show) {
+      tasksToShow = this.state.tasks.filter((task) => {
+        const lc = task.text.toLowerCase();
+        const filter = this.props.searchText.toLowerCase();
+        return lc.includes(filter);
+      });
+    } else {
+      tasksToShow = this.state.tasks;
+    }
+
     return (
       <>
         <AddTask addTask={this.addTask} />
         <ToDoList
-          tasks={this.state.tasks}
+          tasks={tasksToShow}
           deleteTask={this.deleteTask}
           changeTaskStatus={this.changeTaskStatus}
         />

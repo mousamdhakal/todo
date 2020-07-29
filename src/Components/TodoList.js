@@ -18,16 +18,16 @@ const ToDoList = (props) => {
             className="todos__button todos__button--delete"
             onClick={() => props.deleteTask(task.id)}
           >
-            <i class="fas fa-trash-alt"></i>
+            <i className="fas fa-trash-alt"></i>
           </button>
           <button
             className="todos__button todos__button--checkbox"
             onClick={() => props.changeTaskStatus(task.id)}
           >
             {task.complete ? (
-              <i class="far fa-check-square"></i>
+              <i className="far fa-check-square"></i>
             ) : (
-              <i class="far fa-square"></i>
+              <i className="far fa-square"></i>
             )}
           </button>
         </div>

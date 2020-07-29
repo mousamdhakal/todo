@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 
 class AddTask extends Component {
-  state = {
-    text: "",
-  };
+  constructor() {
+    super();
+
+    this.state = {
+      text: "",
+    };
+  }
 
   handleChange = (e) => {
     this.setState({
@@ -24,10 +28,10 @@ class AddTask extends Component {
   render() {
     return (
       <form className="form" onSubmit={this.handleSubmit}>
-        <label className="form__label"> Add new task</label>
         <input
           className="form__input"
           type="text"
+          placeholder="Add task here"
           onChange={this.handleChange}
           value={this.state.text}
         />
