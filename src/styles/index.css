@@ -51,6 +51,7 @@ body {
 
 .todos__text--complete {
   text-decoration: line-through;
+  opacity: 0.3;
 }
 
 .todos__button {

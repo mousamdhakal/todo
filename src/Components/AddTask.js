@@ -34,6 +34,7 @@ class AddTask extends Component {
           placeholder="Add task here"
           onChange={this.handleChange}
           value={this.state.text}
+          autoFocus
         />
       </form>
     );

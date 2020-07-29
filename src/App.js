@@ -29,7 +29,7 @@ class App extends Component {
         <header className="header">
           <div className="container clearfix">
             <h1 className="header__brand">
-              <a className="header__text" href="/">
+              <a className="header__text" href="/todo">
                 Baki Kaam
               </a>
             </h1>
