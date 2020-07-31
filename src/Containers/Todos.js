@@ -44,35 +44,31 @@ class Todos extends Component {
     });
   };
 
-  filterTasks = () => {
-    let tasksToShow = [];
-
+  filterTasks = (tasks) => {
     if (this.props.display === "all") {
-      tasksToShow = this.state.tasks;
+      return tasks;
     }
 
     if (this.props.display === "completed") {
-      tasksToShow = this.state.tasks.filter((task) => task.complete);
+      return tasks.filter((task) => task.complete);
     }
 
     if (this.props.display === "incomplete") {
-      tasksToShow = this.state.tasks.filter((task) => !task.complete);
+      return tasks.filter((task) => !task.complete);
     }
-
-    tasksToShow = this.searchTasks(tasksToShow);
-
-    return tasksToShow;
   };
 
-  searchTasks = (tasks) => {
+  searchTasks = () => {
     if (this.props.show) {
-      return tasks.filter((task) => {
-        const lc = task.text.toLowerCase();
-        const filter = this.props.searchText.toLowerCase();
-        return lc.includes(filter);
-      });
+      return this.filterTasks(
+        this.state.tasks.filter((task) => {
+          const lc = task.text.toLowerCase();
+          const filter = this.props.searchText.toLowerCase();
+          return lc.includes(filter);
+        })
+      );
     } else {
-      return tasks;
+      return this.filterTasks(this.state.tasks);
     }
   };
 
@@ -81,7 +77,7 @@ class Todos extends Component {
       <>
         <AddTask addTask={this.addTask} />
         <ToDoList
-          tasks={this.filterTasks()}
+          tasks={this.searchTasks()}
           deleteTask={this.deleteTask}
           changeTaskStatus={this.changeTaskStatus}
         />
