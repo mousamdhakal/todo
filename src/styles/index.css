@@ -42,6 +42,7 @@ body {
   background-color: transparent;
   color: #d4c8c5;
   border: none;
+  width: 150px;
 }
 
 .todos__list-item {
@@ -105,6 +106,10 @@ body {
   .search {
     float: right;
     padding: 9px 0;
+  }
+
+  .search__input {
+    width: 180px;
   }
   
   .todos, .form__input, .search__input {
