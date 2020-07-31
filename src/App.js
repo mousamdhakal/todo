@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Todos from "./Components/Todos";
-import SearchBar from "./Components/SearchBar";
+import Todos from "./Containers/Todos";
+import SearchBar from "./Containers/SearchBar";
+import Button from "./Components/common/button";
 
 class App extends Component {
   constructor() {
@@ -9,6 +10,7 @@ class App extends Component {
     this.state = {
       searchText: " ",
       showSearchResult: false,
+      display: "all",
     };
   }
 
@@ -21,6 +23,12 @@ class App extends Component {
         showSearchResult: true,
       });
     }
+  };
+
+  setDisplay = (display) => {
+    this.setState({
+      display: display,
+    });
   };
 
   render() {
@@ -38,7 +46,32 @@ class App extends Component {
         </header>
         <section className="todos">
           <div className="container">
+            <div className="display-buttons">
+              <Button
+                className={`${this.state.display === "all" ? "active" : ""}`}
+                onClick={() => this.setDisplay("all")}
+              >
+                All
+              </Button>
+              <Button
+                className={`${
+                  this.state.display === "completed" ? "active" : ""
+                }`}
+                onClick={() => this.setDisplay("completed")}
+              >
+                Completed
+              </Button>
+              <Button
+                className={`${
+                  this.state.display === "incomplete" ? "active" : ""
+                }`}
+                onClick={() => this.setDisplay("incomplete")}
+              >
+                Incomplete
+              </Button>
+            </div>
             <Todos
+              display={this.state.display}
               show={this.state.showSearchResult}
               searchText={this.state.searchText}
             />

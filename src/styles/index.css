@@ -49,6 +49,11 @@ body {
   border-bottom: 1px solid #56494E;
 }
 
+.display-buttons {
+  width: max-content;
+  margin: 10px auto 0px auto;
+}
+
 .todos__text--complete {
   text-decoration: line-through;
   opacity: 0.3;

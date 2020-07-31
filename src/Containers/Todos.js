@@ -44,24 +44,44 @@ class Todos extends Component {
     });
   };
 
-  render() {
+  filterTasks = () => {
     let tasksToShow = [];
 
+    if (this.props.display === "all") {
+      tasksToShow = this.state.tasks;
+    }
+
+    if (this.props.display === "completed") {
+      tasksToShow = this.state.tasks.filter((task) => task.complete);
+    }
+
+    if (this.props.display === "incomplete") {
+      tasksToShow = this.state.tasks.filter((task) => !task.complete);
+    }
+
+    tasksToShow = this.searchTasks(tasksToShow);
+
+    return tasksToShow;
+  };
+
+  searchTasks = (tasks) => {
     if (this.props.show) {
-      tasksToShow = this.state.tasks.filter((task) => {
+      return tasks.filter((task) => {
         const lc = task.text.toLowerCase();
         const filter = this.props.searchText.toLowerCase();
         return lc.includes(filter);
       });
     } else {
-      tasksToShow = this.state.tasks;
+      return tasks;
     }
+  };
 
+  render() {
     return (
       <>
         <AddTask addTask={this.addTask} />
         <ToDoList
-          tasks={tasksToShow}
+          tasks={this.filterTasks()}
           deleteTask={this.deleteTask}
           changeTaskStatus={this.changeTaskStatus}
         />
